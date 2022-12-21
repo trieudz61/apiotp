@@ -4,7 +4,5 @@ const app = express();
 const route = require("./routes/index");
 var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, "public")));
-app.set("views", path.join(__dirname, "resources/views"));
 route(app);
 app.listen(3000);
