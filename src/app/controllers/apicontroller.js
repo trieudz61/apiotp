@@ -16,7 +16,6 @@ class apiController {
   getServices = async (req, res) => {
     const dataAPIQuery = req.query.api;
     const callbackData = await servicesAvailable(dataAPIQuery);
-    console.log(callbackData.message);
     if (callbackData.message === "Invalid api key!") {
       res.send(callbackData);
     } else {
@@ -88,7 +87,8 @@ let getOTPFromId = async (query1, query2) => {
           "http://otptextnow.com/api/?key=" +
           query1 +
           "&action=get_code&id=" +
-          query2,
+          query2 +
+          "&service=telegram",
       }).then((res) => {
         resolve(res.data);
       });
