@@ -60,6 +60,10 @@ class apiController {
       res.send(trueData);
     }
   };
+  getHistory = async (req, res) => {
+    const callbackData = await getHistory();
+    res.send(callbackData);
+  };
 }
 let servicesAvailable = async (query1) => {
   return new Promise(async (resolve, reject) => {
@@ -115,5 +119,18 @@ let getNewSim = async (query1, query2) => {
     }
   });
 };
-
+let getHistory = async (query1) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      await axios({
+        method: "get",
+        url: "https://otptextnow.com/core/api/trieu.php",
+      }).then((res) => {
+        resolve(res.data);
+      });
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
 module.exports = new apiController();
